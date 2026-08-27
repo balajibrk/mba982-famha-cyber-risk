@@ -20,9 +20,9 @@ A Scoped Reproduction with Grounded LLM Assistant**
 
 This project reproduces the core technical contribution of Bag, Sarkar, and Bose (2025) — hereafter Bag et al. (2025) — and adds a novel **grounded LLM security-assistant layer** that the original paper does not include. The paper builds **temporal cybersecurity knowledge graphs** from policy and attack text, then classifies four-level policy risk with an **X-FAMHA-GNN** (Factor-Analysis-based Multi-Head Attention Graph Neural Network).
 
-**Main finding.** On a scoped 18-company case study with leave-one-out cross-validation, X-FAMHA-GNN achieves **accuracy 0.611** and **macro-F1 0.461**, beating GATConv (**0.444 / 0.329**) and a majority-class baseline (**0.444 / 0.154**). Across five random seeds, Mann–Whitney U tests (one-sided) give **p = 0.0040** (F1 vs GAT) and **p = 0.0037** (F1 vs majority), both below α = 0.05. FAMHA attention uses **1,638** parameters versus **9,216** for an equivalent vanilla multi-head design (~5.6× reduction), consistent with the paper’s Theorem 3.1.
+**Main finding.** On a scoped 18-company case study with leave-one-out cross-validation, X-FAMHA-GNN achieves **accuracy 0.611** and **macro-F1 0.461**, beating GATConv (**0.444 / 0.329**) and a majority-class baseline (**0.444 / 0.154**). Across five random seeds, Mann-Whitney U tests (one-sided) give **p = 0.0040** (F1 vs GAT) and **p = 0.0037** (F1 vs majority), both below alpha = 0.05. FAMHA attention uses **1,638** parameters versus **9,216** for an equivalent vanilla multi-head design (~5.6x reduction), consistent with the paper's Theorem 3.1.
 
-**LLM design claim.** The assistant is deliberately *not* a chatbot that invents risk numbers. Remediation **impact** is obtained by **re-running the trained GNN** on an edited knowledge graph (counterfactual re-score). Local Ollama (Llama 3.1 8B) only narrates that precomputed evidence. Example: Uber high/critical risk mass **1.000 → 0.041 (−95.9%)**; Capital One **1.000 → 0.924 (−7.6%)**.
+**LLM design claim.** The assistant is deliberately *not* a chatbot that invents risk numbers. Remediation **impact** is obtained by **re-running the trained GNN** on an edited knowledge graph (counterfactual re-score). Local Ollama (Llama 3.1 8B) only narrates that precomputed evidence. Example: Uber high/critical risk mass **1.000 -> 0.041 (-95.9%)**; Capital One **1.000 -> 0.924 (-7.6%)**.
 
 All code, validation scripts, result tables, and documentation are available in the public repository linked above.
 
@@ -64,10 +64,10 @@ Bag et al. (2025) propose an explainable decision-support system for cybersecuri
 
 ### 3.2 Project objectives
 
-1. Reconstruct the Bag et al. pipeline: corpus → clean → temporal KG → embeddings → FAMHA GNN → baselines → interpretability.
-2. Implement FAMHA Algorithm 1 to the mathematics (head count, PAFA partition, √(d/2) attention, composition, Θ_FAMHA < Θ_normal).
-3. Evaluate with leave-one-out CV, GATConv and majority baselines, and Mann–Whitney U across seeds.
-4. Add a grounded LLM layer: counterfactual GNN re-score → evidence-only narrative (Ollama with template fallback).
+1. Reconstruct the Bag et al. pipeline: corpus -> clean -> temporal KG -> embeddings -> FAMHA GNN -> baselines -> interpretability.
+2. Implement FAMHA Algorithm 1 to the mathematics (head count, PAFA partition, sqrt(d/2) attention, composition, Theta_FAMHA < Theta_normal).
+3. Evaluate with leave-one-out CV, GATConv and majority baselines, and Mann-Whitney U across seeds.
+4. Add a grounded LLM layer: counterfactual GNN re-score -> evidence-only narrative (Ollama with template fallback).
 5. Deliver a public, phase-validated codebase and this module report for faculty review.
 
 ---
@@ -78,7 +78,7 @@ Bag et al. (2025) propose an explainable decision-support system for cybersecuri
 
 | Item | Specification |
 |------|---------------|
-| Company set | 18 firms (see §4.2) |
+| Company set | 18 firms (see Section 4.2) |
 | Risk classes | 4 — `low_risk`, `medium_risk`, `high_risk`, `critical_risk` |
 | Text types per company | Cybersecurity **policy** narrative + **attack / breach** narrative |
 | Graph unit | One temporal knowledge graph per company (GraphML) |
@@ -148,30 +148,28 @@ After Phase 2 construction: typically **~26–43 nodes** and **~22–33 edges** 
 1. **Coreference:** resolve aliases / “the company” → canonical firm name.
 2. **OIE:** NLTK POS + NP-chunk SVO triples.
 3. **NER typing:** gazetteer → ORG / POLICY / ATTACK / ASSET / ENTITY.
-4. **Canonicalization:** MiniLM embeddings + agglomerative clustering (cosine, τ = 0.30) → map to 8 relations.
+4. **Canonicalization:** MiniLM embeddings + agglomerative clustering (cosine, distance threshold tau = 0.30) -> map to 8 relations.
 5. **Temporal labels:** breach year / publish proxy on nodes and edges.
 6. Export `data/processed/kg/{slug}.graphml`.
 
 ### Step 3 — Node features (`src/model/features.py`)
 
-Each node feature is:
+Each node feature is the concatenation:
 
-\[
-\mathbf{x}_v \;=\; \bigl[\; \text{type one-hot (5)},\;\; \text{MiniLM}(\text{label})_{(384)},\;\; \text{normalised year (1)} \;\bigr]
-\]
+**x_v = [ type one-hot (5 dims) , MiniLM(label) (384 dims) , normalised year (1 dim) ]**
 
-so \(d_{\text{in}} = 390\). A learnable linear layer maps to \(d_{\text{model}} = 32\).
+so **d_in = 390**. A learnable linear layer maps to **d_model = 32**.
 
 ### Step 4 — FAMHA + X-FAMHA-GNN (`src/model/famha.py`, `xfamha_gnn.py`)
 
 Faithful Algorithm 1:
 
 1. **Head count** from feature-covariance eigenvalues (Kaiser: # eigenvalues above the mean).
-2. **PAFA partition** of \(d\) columns into \(h\) groups with \(\sum \mathrm{len}_i = d\).
-3. Per-head attention scaled by \(\sqrt{d/2}\), neighbour-masked softmax, sigmoid; compose columns back.
-4. Stack **3** FAMHA blocks with ELU + residual FFN → global mean pool → 4-way softmax.
+2. **PAFA partition** of *d* columns into *h* groups with **sum(len_i) = d**.
+3. Per-head attention scaled by **sqrt(d/2)**, neighbour-masked softmax, sigmoid; compose columns back.
+4. Stack **3** FAMHA blocks with ELU + residual FFN -> global mean pool -> 4-way softmax.
 
-Unit tests verify head-count response to eigenvalue spread and \(\Theta_{\text{FAMHA}} < \Theta_{\text{normal}}\).
+Unit tests verify head-count response to eigenvalue spread and **Theta_FAMHA < Theta_normal**.
 
 ### Step 5 — Training and baselines (`src/train/`, `src/baselines/`)
 
@@ -188,7 +186,7 @@ Unit tests verify head-count response to eigenvalue spread and \(\Theta_{\text{F
 
 ### Step 7 — Grounded LLM assistant (`src/assistant/`)
 
-1. **Counterfactual:** neutralize attack-side weakness entities; inject MFA / least-privilege control node; **re-run trained GNN** → `risk_before`, `risk_after`, \(\Delta\).
+1. **Counterfactual:** neutralize attack-side weakness entities; inject MFA / least-privilege control node; **re-run trained GNN** -> `risk_before`, `risk_after`, Delta.
 2. **Narrative:** Ollama `llama3.1:8b` with evidence-only system rules; JSON `{one_line_verdict, why, fix, impact}`; ungrounded-number check; template fallback if Ollama is down.
 3. Streamlit demo: `app/demo_app.py`.
 
@@ -208,27 +206,27 @@ Training loss on fold 1 decreases cleanly (≈1.388 → 0.026). G-mean is low be
 
 ### 6.2 Robustness across five seeds + Mann–Whitney U
 
-| Model | Accuracy (mean ± std) | Macro-F1 (mean) |
-|-------|----------------------:|----------------:|
-| X-FAMHA-GNN | 0.600 ± 0.042 | 0.495 |
-| GATConv | 0.456 ± 0.074 | 0.340 |
+| Model | Accuracy (mean +/- std) | Macro-F1 (mean) |
+|-------|------------------------:|----------------:|
+| X-FAMHA-GNN | 0.600 +/- 0.042 | 0.495 |
+| GATConv | 0.456 +/- 0.074 | 0.340 |
 
-| Contrast | Metric | \(p\)-value (X-FAMHA greater) |
-|----------|--------|------------------------------:|
+| Contrast | Metric | p-value (X-FAMHA greater) |
+|----------|--------|--------------------------:|
 | vs GATConv | Accuracy | 0.0096 |
 | vs GATConv | Macro-F1 | **0.0040** |
 | vs Majority | Accuracy | 0.0035 |
 | vs Majority | Macro-F1 | **0.0037** |
 
-All below α = 0.05. See `docs/results.csv`.
+All below alpha = 0.05. See `docs/results.csv`.
 
 ### 6.3 FAMHA parameter efficiency
 
 | Quantity | Value |
 |----------|------:|
-| Θ_FAMHA (trained stack) | 1,638 |
-| Θ_vanilla MHA equivalent | 9,216 |
-| Reduction | ~5.6× |
+| Theta_FAMHA (trained stack) | 1,638 |
+| Theta_vanilla MHA equivalent | 9,216 |
+| Reduction | ~5.6x |
 
 ### 6.4 Interpretability sanity
 
@@ -239,10 +237,10 @@ All below α = 0.05. See `docs/results.csv`.
 
 ### 6.5 Counterfactual re-score + LLM narrative
 
-| Company | Risk before | Risk after | Δ | Class shift |
-|---------|------------:|-----------:|--:|-------------|
-| Uber | 1.000 | 0.041 | **−95.9%** | critical → low |
-| Capital One | 1.000 | 0.924 | **−7.6%** | stays high (smaller move) |
+| Company | Risk before | Risk after | Delta | Class shift |
+|---------|------------:|-----------:|------:|-------------|
+| Uber | 1.000 | 0.041 | **-95.9%** | critical -> low |
+| Capital One | 1.000 | 0.924 | **-7.6%** | stays high (smaller move) |
 
 Narratives were produced by **Ollama `llama3.1:8b`** and validated for JSON schema + no ungrounded numbers (`tests/validate_phase6.py`).
 
@@ -269,7 +267,7 @@ The methodological skeleton — temporal KG construction, eight canonical relati
 | Typical “AI + LLM” demo | This project |
 |-------------------------|--------------|
 | LLM invents “risk reduced by ~40%” | GNN recalculates risk; LLM quotes that number |
-| Chart caption generation | Evidence package: SHAP + attention + edited-graph Δ |
+| Chart caption generation | Evidence package: SHAP + attention + edited-graph Delta |
 | Cloud LLM as black-box scorer | Local LLM as **narrator**; GNN as **reasoner** |
 
 ### 7.3 Real-time operational uses of the LLM layer
@@ -277,8 +275,8 @@ The methodological skeleton — temporal KG construction, eight canonical relati
 1. Analyst triage when a company is selected in Streamlit.  
 2. Executive one-pager from `exec_summary`.  
 3. Engineering ticket JSON (severity, remediation, expected impact).  
-4. Remediation prioritisation by comparing counterfactual Δ across firms.  
-5. Template fallback when Ollama is down — **impact numbers still model-true**.
+4. Remediation prioritisation by comparing counterfactual Delta across firms.  
+5. Template fallback when Ollama is down - **impact numbers still model-true**.
 
 These are on-demand analyses over case-study graphs, not live SIEM monitoring.
 
@@ -340,10 +338,10 @@ Environment setup (Python 3.12 via `uv`, CUDA torch, Ollama model pull) is docum
 
 This MBA982 project module reproduces the temporal knowledge-graph + X-FAMHA-GNN cybersecurity risk framework of Bag, Sarkar, and Bose (2025) on a transparent 18-company case study, and extends it with a grounded LLM assistant. We find that:
 
-1. **X-FAMHA-GNN outperforms GATConv and majority baselines** under leave-one-out CV (acc **0.611**, F1 **0.461**), with Mann–Whitney F1 **p ≈ 0.004**.  
-2. **FAMHA is parameter-efficient** (~5.6× fewer attention parameters than vanilla multi-head) and passes Algorithm 1 unit tests.  
+1. **X-FAMHA-GNN outperforms GATConv and majority baselines** under leave-one-out CV (acc **0.611**, F1 **0.461**), with Mann-Whitney F1 **p ~ 0.004**.  
+2. **FAMHA is parameter-efficient** (~5.6x fewer attention parameters than vanilla multi-head) and passes Algorithm 1 unit tests.  
 3. **SHAP / attention explanations** align with known public breach mechanisms for sample firms.  
-4. **Remediation impact is model-proven**: the LLM reports GNN counterfactual deltas (e.g. Uber **−95.9%**), not invented percentages.  
+4. **Remediation impact is model-proven**: the LLM reports GNN counterfactual deltas (e.g. Uber **-95.9%**), not invented percentages.  
 5. The full pipeline and this report are openly available at **https://github.com/balajibrk/mba982-famha-cyber-risk** for faculty review.
 
 Overall, the project shows that Bag et al.’s methodological core is implementable on a scoped corpus, while clarifying which conclusions survive small-N constraints — and demonstrating how an LLM can be attached without becoming the source of the risk number.
@@ -353,10 +351,10 @@ Overall, the project shows that Bag et al.’s methodological core is implementa
 ## References
 
 1. Bag, S., Sarkar, S., & Bose, I. (2025). Enhancing cybersecurity risk assessment using temporal knowledge graph-based explainable decision support system. *Decision Support Systems*, *198*, 114526. https://doi.org/10.1016/j.dss.2025.114526  
-2. Veličković, P., Cucurull, G., Casanova, A., Romero, A., Liò, P., & Bengio, Y. (2018). Graph Attention Networks. *ICLR*.  
+2. Velickovic, P., Cucurull, G., Casanova, A., Romero, A., Lio, P., & Bengio, Y. (2018). Graph Attention Networks. *ICLR*.  
 3. Lundberg, S. M., & Lee, S.-I. (2017). A unified approach to interpreting model predictions. *NeurIPS* (SHAP).  
 4. Reimers, N., & Gurevych, I. (2019). Sentence-BERT: Sentence embeddings using Siamese BERT-networks. *EMNLP*.  
-5. Meta AI / Ollama. Llama 3.1 8B — https://ollama.com/library/llama3.1  
+5. Meta AI / Ollama. Llama 3.1 8B - https://ollama.com/library/llama3.1  
 
 ```bibtex
 @article{bag2025cyber,
@@ -374,32 +372,30 @@ Overall, the project shows that Bag et al.’s methodological core is implementa
 
 ## Appendix A — Repository structure (for review)
 
-```text
-mba982-famha-cyber-risk/
-├── README.md
-├── requirements.txt
-├── app/demo_app.py
-├── data/raw/{policies,attacks}/
-├── docs/
-│   ├── MBA982_Project_Module_Report.md   # this report
-│   ├── MBA982_Project_Module_Report.pdf
-│   ├── SUMMARY.md
-│   ├── labeling_methodology.md
-│   ├── results.csv
-│   ├── data_manifest.csv
-│   └── kg_stats.csv
-├── src/
-│   ├── config.py
-│   ├── preprocess/
-│   ├── kg/
-│   ├── model/          # famha.py, xfamha_gnn.py, features.py
-│   ├── train/
-│   ├── baselines/
-│   ├── interpret/
-│   └── assistant/      # counterfactual + narrative + pipeline
-├── stubs/numba/        # Smart App Control workaround for SHAP
-└── tests/validate_phase*.py
-```
+| Path | Role |
+|------|------|
+| `README.md` | Setup and overview |
+| `requirements.txt` | Python dependencies |
+| `app/demo_app.py` | Streamlit demo |
+| `data/raw/policies/` | Curated policy text |
+| `data/raw/attacks/` | Curated breach / attack text |
+| `docs/MBA982_Project_Module_Report.md` | This report (Markdown) |
+| `docs/MBA982_Project_Module_Report.pdf` | This report (PDF) |
+| `docs/SUMMARY.md` | Concise summary |
+| `docs/labeling_methodology.md` | Label rules |
+| `docs/results.csv` | Results table |
+| `docs/data_manifest.csv` | Corpus word counts |
+| `docs/kg_stats.csv` | Per-company KG stats |
+| `src/config.py` | Companies, labels, paths |
+| `src/preprocess/` | Corpus build + cleaning |
+| `src/kg/` | Temporal KG construction |
+| `src/model/` | FAMHA, X-FAMHA-GNN, features |
+| `src/train/` | LOO training + significance |
+| `src/baselines/` | GATConv baseline |
+| `src/interpret/` | SHAP + attention |
+| `src/assistant/` | Counterfactual + LLM narrative |
+| `stubs/numba/` | SHAP / Smart App Control workaround |
+| `tests/validate_phase*.py` | Phase validation gates |
 
 ## Appendix B — Data source and period checklist
 
@@ -415,20 +411,30 @@ mba982-famha-cyber-risk/
 
 ## Appendix C — Resources (links)
 
-| Resource | Location |
-|----------|----------|
-| **GitHub repository** | https://github.com/balajibrk/mba982-famha-cyber-risk |
-| This report (Markdown) | https://github.com/balajibrk/mba982-famha-cyber-risk/blob/main/docs/MBA982_Project_Module_Report.md |
-| This report (PDF) | https://github.com/balajibrk/mba982-famha-cyber-risk/blob/main/docs/MBA982_Project_Module_Report.pdf |
-| Project summary | https://github.com/balajibrk/mba982-famha-cyber-risk/blob/main/docs/SUMMARY.md |
-| Labeling methodology | https://github.com/balajibrk/mba982-famha-cyber-risk/blob/main/docs/labeling_methodology.md |
-| README / setup | https://github.com/balajibrk/mba982-famha-cyber-risk/blob/main/README.md |
+**Repository base URL:**  
+https://github.com/balajibrk/mba982-famha-cyber-risk
+
+Paths below are relative to that repository root (append to the base URL).
+
+| Resource | Path / URL |
+|----------|------------|
+| This report (Markdown) | `/docs/MBA982_Project_Module_Report.md` |
+| This report (PDF) | `/docs/MBA982_Project_Module_Report.pdf` |
+| Project summary | `/docs/SUMMARY.md` |
+| Labeling methodology | `/docs/labeling_methodology.md` |
+| README / setup | `/README.md` |
 | Source paper (DOI) | https://doi.org/10.1016/j.dss.2025.114526 |
 | PyTorch Geometric | https://pytorch-geometric.readthedocs.io/ |
 | SHAP | https://shap.readthedocs.io/ |
 | Sentence-Transformers | https://www.sbert.net/ |
 | Ollama | https://ollama.com/ |
 | Streamlit | https://streamlit.io/ |
+
+**Full clone command**
+
+```text
+git clone https://github.com/balajibrk/mba982-famha-cyber-risk.git
+```
 
 ---
 

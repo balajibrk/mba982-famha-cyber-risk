@@ -2,6 +2,7 @@
 (same styling approach as the MBA979 module report)."""
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 import markdown
@@ -53,7 +54,11 @@ h3 {
 }
 p { margin: 0 0 8px 0; }
 strong { color: #0f172a; }
-a { color: #1d4ed8; text-decoration: none; }
+a {
+  color: #1d4ed8;
+  text-decoration: none;
+  word-wrap: break-word;
+}
 blockquote {
   margin: 10px 0;
   padding: 8px 12px;
@@ -66,6 +71,7 @@ code {
   font-family: Courier, monospace;
   font-size: 8.5pt;
   background: #f8fafc;
+  word-wrap: break-word;
 }
 pre {
   background: #f8fafc;
@@ -74,12 +80,15 @@ pre {
   font-size: 8pt;
   line-height: 1.35;
   white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: Courier, monospace;
 }
 table {
   width: 100%;
   border-collapse: collapse;
   margin: 8px 0 12px 0;
   font-size: 9pt;
+  table-layout: fixed;
 }
 th {
   background: #1e3a5f;
@@ -92,6 +101,8 @@ td {
   border: 1px solid #cbd5e1;
   padding: 4px 6px;
   vertical-align: top;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 tr:nth-child(even) td { background: #f8fafc; }
 ul, ol { margin: 4px 0 10px 18px; padding: 0; }
@@ -103,13 +114,75 @@ li { margin-bottom: 3px; }
   border-top: 1px solid #e2e8f0;
   padding-top: 4px;
 }
+.url {
+  font-family: Courier, monospace;
+  font-size: 8.5pt;
+  word-wrap: break-word;
+}
 """
 
 
+def _ascii_safe(text: str) -> str:
+    """Replace characters Helvetica / xhtml2pdf often fail to draw."""
+    repl = {
+        "\u2014": "-",   # em dash
+        "\u2013": "-",   # en dash
+        "\u2212": "-",   # minus
+        "\u2192": "->",  # arrow
+        "\u00d7": "x",   # multiply
+        "\u2248": "~",   # approx
+        "\u00b1": "+/-", # plus-minus
+        "\u00a7": "Section ",  # section sign
+        "\u03b1": "alpha",
+        "\u03c4": "tau",
+        "\u0398": "Theta",
+        "\u0394": "Delta",
+        "\u010d": "c",   # c-caron (Velickovic)
+        "\u010c": "C",
+        "\u00f2": "o",   # o-grave (Lio)
+        "\u00f3": "o",
+        "\u00e9": "e",
+        "\u00e8": "e",
+        "\u00fc": "u",
+        "\u00f6": "o",
+        "\u00e4": "a",
+        "\u2018": "'",
+        "\u2019": "'",
+        "\u201c": '"',
+        "\u201d": '"',
+        "\u2026": "...",
+        "\u00a0": " ",
+        "\u25a0": "",
+    }
+    for a, b in repl.items():
+        text = text.replace(a, b)
+    # Strip any residual TeX delimiters that would print literally
+    text = re.sub(r"\\\[\s*", "", text)
+    text = re.sub(r"\s*\\\]", "", text)
+    text = re.sub(r"\\\((.+?)\\\)", r"\1", text, flags=re.DOTALL)
+    # Drop remaining non-latin1 glyphs that Helvetica cannot draw (become black squares)
+    cleaned = []
+    for ch in text:
+        try:
+            ch.encode("latin-1")
+            cleaned.append(ch)
+        except UnicodeEncodeError:
+            cleaned.append("")
+    return "".join(cleaned)
+
+
 def md_to_html(md_text: str) -> str:
+    md_text = _ascii_safe(md_text)
     body = markdown.markdown(
         md_text,
         extensions=["tables", "fenced_code", "sane_lists", "nl2br"],
+    )
+    # Allow long URLs / paths in table cells to wrap
+    body = body.replace("<td>", '<td style="word-wrap: break-word;">')
+    body = re.sub(
+        r'href="(https?://[^"]+)"',
+        lambda m: f'href="{m.group(1)}" class="url"',
+        body,
     )
     return f"""<!DOCTYPE html>
 <html>
