@@ -1,0 +1,4 @@
+# PROOF-OF-CONCEPT reconstruction - not a verbatim corporate document.
+# Grounded in documented public facts about Progress MOVEit (breach / threat article).
+# Generated for a scoped reproduction of Bag, Sarkar & Bose (2025).
+In 2023, a significant cyber-attack occurred on Progress MOVEit. A ransomware group mass-exploited a SQL injection zero-day in a managed file transfer product to steal data from many downstream organizations. A sql injection flaw was exploited at scale. The attackers weaponized a zero day vulnerability. A managed file transfer product was the entry point. Mass exploitation affected many downstream organizations. The breach exposed approximately 60,000,000 records. Progress MOVEit disclosed the incident promptly to regulators and affected customers. The incident response team investigated the intrusion and mitigated the threat. Progress MOVEit later strengthened its vulnerability management controls.

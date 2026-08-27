@@ -1,0 +1,4 @@
+# PROOF-OF-CONCEPT reconstruction - not a verbatim corporate document.
+# Grounded in documented public facts about Wells Fargo (breach / threat article).
+# Generated for a scoped reproduction of Bag, Sarkar & Bose (2025).
+In 2008, a significant cyber-attack occurred on Wells Fargo. A third-party vendor credential leak allowed unauthorized access to customer records held by an external partner. A third party data share leaked customer information. An unrotated vendor key remained valid for too long. A vendor credential leak enabled unauthorized access. The breach exposed approximately 200,000 records. Wells Fargo disclosed the incident after an internal investigation of several months. The incident response team investigated the intrusion and mitigated the threat. Wells Fargo later strengthened its vendor risk management controls.

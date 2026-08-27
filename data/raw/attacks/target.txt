@@ -1,0 +1,4 @@
+# PROOF-OF-CONCEPT reconstruction - not a verbatim corporate document.
+# Grounded in documented public facts about Target (breach / threat article).
+# Generated for a scoped reproduction of Bag, Sarkar & Bose (2025).
+In 2013, a significant cyber-attack occurred on Target. Stolen HVAC vendor credentials gave a foothold that spread to point-of-sale systems infected with card-scraping malware. Stolen vendor credentials provided the initial foothold. Point of sale malware scraped payment card data. The breach compromised millions of payment cards. The attackers pivoted from a vendor network into core systems. The breach exposed approximately 70,000,000 records. Target disclosed the incident promptly to regulators and affected customers. The incident response team investigated the intrusion and mitigated the threat. Target later strengthened its vendor risk management controls.

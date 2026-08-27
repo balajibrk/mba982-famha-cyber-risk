@@ -1,0 +1,4 @@
+model,accuracy,f1_macro,acc_std
+X-FAMHA-GNN,0.6000,0.4947,0.0416
+GATConv,0.4556,0.3397,0.0737
+Majority-class,0.4444,0.1538,0.0000

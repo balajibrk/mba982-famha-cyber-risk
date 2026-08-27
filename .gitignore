@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Virtual env
+.venv/
+
+# Artifacts / outputs (regenerable)
+artifacts/
+data/processed/
+data/labels/*.json
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Model caches
+.cache/
+*.ckpt
+
+# Publisher PDF (copyrighted; cite the DSS article instead of redistributing)
+*.pdf
+
+# Local logs
+*.log
+artifacts/*_log.txt
+artifacts/streamlit_*.txt

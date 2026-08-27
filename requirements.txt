@@ -1,0 +1,42 @@
+# FAMHA Cyber Risk Reproduction - Python 3.12
+#
+# PyTorch (CUDA 12.4 build for the RTX 2000 Ada) is installed separately from the
+# PyTorch index, not from PyPI:
+#   uv pip install torch --index-url https://download.pytorch.org/whl/cu124
+# torch==2.6.0+cu124
+#
+# ENVIRONMENT NOTE: Smart App Control is enabled on the target machine and blocks
+# unsigned compiled DLLs. This forced two deviations from the original plan:
+#   1. spaCy is replaced by NLTK for tokenization/lemmatization/POS. NLTK is pure
+#      Python and, notably, provides the exact WordNetLemmatizer the paper cites.
+#   2. numba/llvmlite (an optional shap JIT dependency whose llvmlite.dll is
+#      blocked) are NOT installed; a no-op numba shim in ./stubs is placed on the
+#      venv path via .venv/Lib/site-packages/_famha_stubs.pth so shap imports and
+#      runs in pure-Python mode. Do not `pip install numba`.
+
+# Core numerics
+numpy>=1.26
+scipy>=1.11
+
+# Graph learning
+torch-geometric>=2.5
+
+# NLP / KG construction
+nltk>=3.8
+sentence-transformers>=3.0
+symspellpy>=6.7
+dateparser>=1.2
+
+# ML / interpretability
+scikit-learn>=1.4
+shap>=0.44
+
+# Data / plotting
+pandas>=2.1
+networkx>=3.2
+matplotlib>=3.8
+seaborn>=0.13
+
+# App + LLM assistant
+streamlit>=1.30
+ollama>=0.3

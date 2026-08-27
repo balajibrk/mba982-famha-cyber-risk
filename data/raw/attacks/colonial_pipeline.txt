@@ -1,0 +1,4 @@
+# PROOF-OF-CONCEPT reconstruction - not a verbatim corporate document.
+# Grounded in documented public facts about Colonial Pipeline (breach / threat article).
+# Generated for a scoped reproduction of Bag, Sarkar & Bose (2025).
+In 2021, a significant cyber-attack occurred on Colonial Pipeline. A ransomware crew logged in through a legacy VPN account lacking multi-factor authentication, forcing a shutdown of fuel distribution. A legacy virtual private network account lacked multi-factor authentication. Ransomware encrypted critical systems. The account was not protected by multi-factor authentication. The incident forced an operational shutdown. The breach exposed approximately 5,800 records. Colonial Pipeline disclosed the incident promptly to regulators and affected customers. The incident response team investigated the intrusion and mitigated the threat. Colonial Pipeline later strengthened its multi-factor authentication controls.

@@ -1,0 +1,4 @@
+# PROOF-OF-CONCEPT reconstruction - not a verbatim corporate document.
+# Grounded in documented public facts about SolarWinds (breach / threat article).
+# Generated for a scoped reproduction of Bag, Sarkar & Bose (2025).
+In 2020, a significant cyber-attack occurred on SolarWinds. A nation-state compromised the software build pipeline, inserting a backdoor into signed product updates distributed to thousands of organizations. A software supply chain compromise inserted a backdoor. A malicious update was distributed to customers. The backdoor granted persistent remote access. The attackers subverted the software build pipeline. The breach exposed approximately 18,000 records. SolarWinds disclosed the incident only after a prolonged delay, drawing regulatory criticism. The incident response team investigated the intrusion and mitigated the threat. SolarWinds later strengthened its software supply chain security controls.

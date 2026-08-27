@@ -1,0 +1,4 @@
+# PROOF-OF-CONCEPT reconstruction - not a verbatim corporate document.
+# Grounded in documented public facts about Twitter (breach / threat article).
+# Generated for a scoped reproduction of Bag, Sarkar & Bose (2025).
+In 2022, a significant cyber-attack occurred on Twitter. An API flaw allowed enumeration that linked accounts to email addresses and phone numbers, later scraped at scale. An application programming interface vulnerability enabled enumeration. Account enumeration linked identities to contact details. The exposed data was scraped at scale. The breach exposed email addresses and phone numbers. The breach exposed approximately 5,400,000 records. Twitter disclosed the incident after an internal investigation of several months. The incident response team investigated the intrusion and mitigated the threat. Twitter later strengthened its api security controls.

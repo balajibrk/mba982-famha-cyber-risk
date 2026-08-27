@@ -1,0 +1,4 @@
+# PROOF-OF-CONCEPT reconstruction - not a verbatim corporate document.
+# Grounded in documented public facts about LastPass (breach / threat article).
+# Generated for a scoped reproduction of Bag, Sarkar & Bose (2025).
+In 2022, a significant cyber-attack occurred on LastPass. Attackers chained an initial developer compromise to steal cloud storage keys and exfiltrate encrypted customer password vault backups. A developer endpoint was compromised first. Stolen cloud storage keys unlocked backup archives. Encrypted customer vault backups were exfiltrated. The attackers chained two incidents together. The breach exposed approximately 25,000,000 records. LastPass disclosed the incident after an internal investigation of several months. The incident response team investigated the intrusion and mitigated the threat. LastPass later strengthened its credential management controls.

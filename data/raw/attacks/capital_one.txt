@@ -1,0 +1,4 @@
+# PROOF-OF-CONCEPT reconstruction - not a verbatim corporate document.
+# Grounded in documented public facts about Capital One (breach / threat article).
+# Generated for a scoped reproduction of Bag, Sarkar & Bose (2025).
+In 2019, a significant cyber-attack occurred on Capital One. A misconfigured web application firewall allowed a server-side request forgery that exfiltrated data from cloud storage buckets. A misconfigured web application firewall failed to block the request. The attacker used server side request forgery to reach internal metadata. Confidential records were exfiltrated from cloud storage. An over broad identity and access management role widened the blast radius. The breach exposed approximately 106,000,000 records. Capital One disclosed the incident after an internal investigation of several months. The incident response team investigated the intrusion and mitigated the threat. Capital One later strengthened its cloud security posture controls.

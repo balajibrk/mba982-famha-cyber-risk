@@ -1,0 +1,4 @@
+# PROOF-OF-CONCEPT reconstruction - not a verbatim corporate document.
+# Grounded in documented public facts about JPMorgan Chase (breach / threat article).
+# Generated for a scoped reproduction of Bag, Sarkar & Bose (2025).
+In 2014, a significant cyber-attack occurred on JPMorgan Chase. Reused privileged VPN credentials without multi-factor authentication, combined with a slow patch cadence, exposed customer contact data. A single factor virtual private network account was compromised. An outdated server patch left a known hole open. A flat network let the attackers move laterally. Reused privileged credentials granted broad access. The breach exposed approximately 83,000,000 records. JPMorgan Chase disclosed the incident after an internal investigation of several months. The incident response team investigated the intrusion and mitigated the threat. JPMorgan Chase later strengthened its multi-factor authentication controls.

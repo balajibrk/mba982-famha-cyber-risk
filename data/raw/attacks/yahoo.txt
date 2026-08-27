@@ -1,0 +1,4 @@
+# PROOF-OF-CONCEPT reconstruction - not a verbatim corporate document.
+# Grounded in documented public facts about Yahoo (breach / threat article).
+# Generated for a scoped reproduction of Bag, Sarkar & Bose (2025).
+In 2013, a significant cyber-attack occurred on Yahoo. Forged authentication cookies and weak password hashing led to the compromise of every user account, disclosed years after the fact. Forged authentication cookies bypassed login. Weak password hashing accelerated credential cracking. Virtually every user account was compromised. The company disclosed the breach years later. The breach exposed approximately 3,000,000,000 records. Yahoo disclosed the incident only after a prolonged delay, drawing regulatory criticism. The incident response team investigated the intrusion and mitigated the threat. Yahoo later strengthened its data encryption controls.

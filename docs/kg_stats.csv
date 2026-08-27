@@ -1,0 +1,19 @@
+slug,name,label,label_name,nodes,edges,density,n_org,n_policy,n_attack,n_asset,n_entity,occurred_at,published_at
+uber,Uber,3,critical_risk,39,33,0.0223,1,8,6,8,16,2016,2016
+capital_one,Capital One,2,high_risk,40,31,0.0199,1,10,6,5,18,2019,2019
+equifax,Equifax,2,high_risk,38,31,0.022,2,7,5,8,16,2017,2017
+target,Target,1,medium_risk,42,33,0.0192,1,9,6,7,19,2013,2013
+marriott,Marriott,2,high_risk,35,28,0.0235,2,7,6,5,15,2018,2018
+jpmorgan,JPMorgan Chase,2,high_risk,37,29,0.0218,1,8,7,5,16,2014,2014
+citigroup,Citigroup,1,medium_risk,43,31,0.0172,1,7,5,5,25,2011,2011
+wells_fargo,Wells Fargo,1,medium_risk,34,26,0.0232,2,8,4,2,18,2008,2008
+solarwinds,SolarWinds,2,high_risk,38,29,0.0206,2,6,7,1,22,2020,2020
+colonial_pipeline,Colonial Pipeline,1,medium_risk,37,30,0.0225,1,9,5,6,16,2021,2021
+okta,Okta,1,medium_risk,33,28,0.0265,1,8,3,1,20,2022,2022
+lastpass,LastPass,2,high_risk,35,28,0.0235,2,7,6,6,14,2022,2022
+moveit,Progress MOVEit,2,high_risk,40,31,0.0199,2,6,6,5,21,2023,2023
+twitter,Twitter,2,high_risk,39,30,0.0202,2,6,3,5,23,2022,2022
+yahoo,Yahoo,3,critical_risk,40,30,0.0192,2,9,4,5,20,2013,2013
+apple,Apple,0,low_risk,26,22,0.0338,2,7,1,3,13,,2023
+cloudflare,Cloudflare,0,low_risk,28,24,0.0317,2,9,1,1,15,,2023
+stripe,Stripe,0,low_risk,28,23,0.0304,2,8,1,2,15,,2023

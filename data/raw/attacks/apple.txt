@@ -1,0 +1,4 @@
+# PROOF-OF-CONCEPT reconstruction - not a verbatim corporate document.
+# Grounded in documented public facts about Apple (breach / threat article).
+# Generated for a scoped reproduction of Bag, Sarkar & Bose (2025).
+As of the study period, Apple has not experienced a major publicly confirmed data breach of the type analyzed in this study. Organizations in the technology sector nonetheless face threats such as phishing, ransomware, and credential theft. Apple monitors emerging threats and updates its controls accordingly. The security team conducts regular tabletop exercises to test its incident response readiness.

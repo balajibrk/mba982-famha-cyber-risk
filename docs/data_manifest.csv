@@ -1,0 +1,37 @@
+slug,name,kind,source,generated_date,raw_word_count,clean_sentence_count,clean_word_count,lemma_count,label,label_name
+uber,Uber,policy,curated proof-of-concept (grounded in documented public facts),2026-08-25,128,14,128,98,3,critical_risk
+uber,Uber,attack,curated proof-of-concept (grounded in documented public facts),2026-08-25,112,11,112,79,3,critical_risk
+capital_one,Capital One,policy,curated proof-of-concept (grounded in documented public facts),2026-08-25,140,14,140,107,2,high_risk
+capital_one,Capital One,attack,curated proof-of-concept (grounded in documented public facts),2026-08-25,104,10,104,78,2,high_risk
+equifax,Equifax,policy,curated proof-of-concept (grounded in documented public facts),2026-08-25,124,14,124,93,2,high_risk
+equifax,Equifax,attack,curated proof-of-concept (grounded in documented public facts),2026-08-25,93,10,93,68,2,high_risk
+target,Target,policy,curated proof-of-concept (grounded in documented public facts),2026-08-25,126,14,126,96,1,medium_risk
+target,Target,attack,curated proof-of-concept (grounded in documented public facts),2026-08-25,91,10,91,69,1,medium_risk
+marriott,Marriott,policy,curated proof-of-concept (grounded in documented public facts),2026-08-25,128,14,128,96,2,high_risk
+marriott,Marriott,attack,curated proof-of-concept (grounded in documented public facts),2026-08-25,90,10,90,69,2,high_risk
+jpmorgan,JPMorgan Chase,policy,curated proof-of-concept (grounded in documented public facts),2026-08-25,131,14,131,103,2,high_risk
+jpmorgan,JPMorgan Chase,attack,curated proof-of-concept (grounded in documented public facts),2026-08-25,95,10,95,76,2,high_risk
+citigroup,Citigroup,policy,curated proof-of-concept (grounded in documented public facts),2026-08-25,108,12,108,86,1,medium_risk
+citigroup,Citigroup,attack,curated proof-of-concept (grounded in documented public facts),2026-08-25,88,10,90,69,1,medium_risk
+wells_fargo,Wells Fargo,policy,curated proof-of-concept (grounded in documented public facts),2026-08-25,138,14,138,108,1,medium_risk
+wells_fargo,Wells Fargo,attack,curated proof-of-concept (grounded in documented public facts),2026-08-25,87,9,87,66,1,medium_risk
+solarwinds,SolarWinds,policy,curated proof-of-concept (grounded in documented public facts),2026-08-25,120,14,120,91,2,high_risk
+solarwinds,SolarWinds,attack,curated proof-of-concept (grounded in documented public facts),2026-08-25,93,10,93,67,2,high_risk
+colonial_pipeline,Colonial Pipeline,policy,curated proof-of-concept (grounded in documented public facts),2026-08-25,127,14,127,99,1,medium_risk
+colonial_pipeline,Colonial Pipeline,attack,curated proof-of-concept (grounded in documented public facts),2026-08-25,91,10,91,66,1,medium_risk
+okta,Okta,policy,curated proof-of-concept (grounded in documented public facts),2026-08-25,129,14,129,98,1,medium_risk
+okta,Okta,attack,curated proof-of-concept (grounded in documented public facts),2026-08-25,77,9,78,56,1,medium_risk
+lastpass,LastPass,policy,curated proof-of-concept (grounded in documented public facts),2026-08-25,120,14,120,91,2,high_risk
+lastpass,LastPass,attack,curated proof-of-concept (grounded in documented public facts),2026-08-25,86,10,86,68,2,high_risk
+moveit,Progress MOVEit,policy,curated proof-of-concept (grounded in documented public facts),2026-08-25,129,14,129,99,2,high_risk
+moveit,Progress MOVEit,attack,curated proof-of-concept (grounded in documented public facts),2026-08-25,96,10,96,72,2,high_risk
+twitter,Twitter,policy,curated proof-of-concept (grounded in documented public facts),2026-08-25,119,14,119,88,2,high_risk
+twitter,Twitter,attack,curated proof-of-concept (grounded in documented public facts),2026-08-25,90,10,90,66,2,high_risk
+yahoo,Yahoo,policy,curated proof-of-concept (grounded in documented public facts),2026-08-25,123,14,123,94,3,critical_risk
+yahoo,Yahoo,attack,curated proof-of-concept (grounded in documented public facts),2026-08-25,88,10,88,68,3,critical_risk
+apple,Apple,policy,curated proof-of-concept (grounded in documented public facts),2026-08-25,123,14,123,93,0,low_risk
+apple,Apple,attack,curated proof-of-concept (grounded in documented public facts),2026-08-25,59,4,59,39,0,low_risk
+cloudflare,Cloudflare,policy,curated proof-of-concept (grounded in documented public facts),2026-08-25,126,14,126,96,0,low_risk
+cloudflare,Cloudflare,attack,curated proof-of-concept (grounded in documented public facts),2026-08-25,59,4,59,39,0,low_risk
+stripe,Stripe,policy,curated proof-of-concept (grounded in documented public facts),2026-08-25,130,14,130,100,0,low_risk
+stripe,Stripe,attack,curated proof-of-concept (grounded in documented public facts),2026-08-25,59,4,59,39,0,low_risk

@@ -1,0 +1,4 @@
+# PROOF-OF-CONCEPT reconstruction - not a verbatim corporate document.
+# Grounded in documented public facts about Equifax (breach / threat article).
+# Generated for a scoped reproduction of Bag, Sarkar & Bose (2025).
+In 2017, a significant cyber-attack occurred on Equifax. An unpatched known vulnerability in a public web application framework was exploited to access consumer credit records. The attackers exploited an unpatched vulnerability. A flaw in a public web framework enabled remote code execution. The breach exposed sensitive consumer credit records. A delayed patch left the system exposed for weeks. The breach exposed approximately 147,000,000 records. Equifax disclosed the incident after an internal investigation of several months. The incident response team investigated the intrusion and mitigated the threat. Equifax later strengthened its patch management controls.

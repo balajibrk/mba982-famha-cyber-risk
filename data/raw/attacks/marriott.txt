@@ -1,0 +1,4 @@
+# PROOF-OF-CONCEPT reconstruction - not a verbatim corporate document.
+# Grounded in documented public facts about Marriott (breach / threat article).
+# Generated for a scoped reproduction of Bag, Sarkar & Bose (2025).
+In 2018, a significant cyber-attack occurred on Marriott. Unauthorized access persisted for years in an acquired reservation database, exposing guest records including passport numbers. Unauthorized access persisted undetected for a long period. The intruders accessed a guest reservation database. The breach exposed passport numbers of guests. A prolonged dwell time allowed extensive data theft. The breach exposed approximately 383,000,000 records. Marriott disclosed the incident only after a prolonged delay, drawing regulatory criticism. The incident response team investigated the intrusion and mitigated the threat. Marriott later strengthened its access control controls.

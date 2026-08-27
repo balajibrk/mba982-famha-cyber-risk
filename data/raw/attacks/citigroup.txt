@@ -1,0 +1,4 @@
+# PROOF-OF-CONCEPT reconstruction - not a verbatim corporate document.
+# Grounded in documented public facts about Citigroup (breach / threat article).
+# Generated for a scoped reproduction of Bag, Sarkar & Bose (2025).
+In 2011, a significant cyber-attack occurred on Citigroup. URL parameter tampering (an insecure direct object reference) in the customer card portal exposed account details. An insecure direct object reference exposed account data. The attacker altered url parameters to enumerate accounts. A weak session cookie enabled session abuse. The customer portal leaked account details. The breach exposed approximately 360,000 records. Citigroup disclosed the incident promptly to regulators and affected customers. The incident response team investigated the intrusion and mitigated the threat. Citigroup later strengthened its secure application development controls.

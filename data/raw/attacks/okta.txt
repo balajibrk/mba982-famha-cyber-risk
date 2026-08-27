@@ -1,0 +1,4 @@
+# PROOF-OF-CONCEPT reconstruction - not a verbatim corporate document.
+# Grounded in documented public facts about Okta (breach / threat article).
+# Generated for a scoped reproduction of Bag, Sarkar & Bose (2025).
+In 2022, a significant cyber-attack occurred on Okta. A support subprocessor's environment was compromised, giving attackers limited access to some customer administrative data. A support subprocessor environment was compromised. Attackers reached a customer support system. Session hijacking extended the attackers reach. The attackers gained limited administrative access. Okta disclosed the incident after an internal investigation of several months. The incident response team investigated the intrusion and mitigated the threat. Okta later strengthened its vendor risk management controls.
