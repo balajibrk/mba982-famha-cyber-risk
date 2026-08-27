@@ -20,9 +20,10 @@ Thumbs.db
 .cache/
 *.ckpt
 
-# Publisher PDF (copyrighted paper); allow project-generated report PDF
+# Publisher PDF (copyrighted paper); allow project-generated report PDFs
 *.pdf
-!docs/PROFESSOR_REPORT.pdf
+!docs/MBA982_Project_Module_Report.pdf
+!docs/MBA979_Project_Module_Report.pdf
 
 # Local logs
 *.log

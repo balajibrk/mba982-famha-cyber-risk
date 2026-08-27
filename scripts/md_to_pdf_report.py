@@ -1,4 +1,5 @@
-"""Convert docs/PROFESSOR_REPORT.md to a print-ready PDF."""
+"""Convert docs/MBA982_Project_Module_Report.md to a print-ready PDF
+(same styling approach as the MBA979 module report)."""
 from __future__ import annotations
 
 from pathlib import Path
@@ -7,8 +8,8 @@ import markdown
 from xhtml2pdf import pisa
 
 ROOT = Path(__file__).resolve().parents[1]
-MD_PATH = ROOT / "docs" / "PROFESSOR_REPORT.md"
-PDF_PATH = ROOT / "docs" / "PROFESSOR_REPORT.pdf"
+MD_PATH = ROOT / "docs" / "MBA982_Project_Module_Report.md"
+PDF_PATH = ROOT / "docs" / "MBA982_Project_Module_Report.pdf"
 
 CSS = """
 @page {
@@ -95,13 +96,6 @@ td {
 tr:nth-child(even) td { background: #f8fafc; }
 ul, ol { margin: 4px 0 10px 18px; padding: 0; }
 li { margin-bottom: 3px; }
-.meta {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  padding: 10px 12px;
-  margin-bottom: 14px;
-  font-size: 9.5pt;
-}
 .footer {
   font-size: 8pt;
   color: #64748b;
@@ -117,18 +111,17 @@ def md_to_html(md_text: str) -> str:
         md_text,
         extensions=["tables", "fenced_code", "sane_lists", "nl2br"],
     )
-    # Pull the H1 out; wrap front-matter-ish first paragraph block in .meta
     return f"""<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8"/>
-<title>Professor Report — X-FAMHA-GNN Cyber Risk Reproduction</title>
+<title>MBA982 Project Module Report</title>
 <style>{CSS}</style>
 </head>
 <body>
 {body}
 <div id="footerContent" class="footer">
-  Temporal KG + X-FAMHA-GNN Cybersecurity Risk Assessment - Professor Review Report
+  MBA982 Project Module Report - Confidential for faculty review
   | https://github.com/balajibrk/mba982-famha-cyber-risk
   | Page <pdf:pagenumber/> of <pdf:pagecount/>
 </div>

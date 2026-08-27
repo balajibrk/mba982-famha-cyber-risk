@@ -55,7 +55,7 @@ uv pip install --python .venv\Scripts\python.exe -r requirements.txt
 
 ## Documentation for review
 
-- **[docs/PROFESSOR_REPORT.md](docs/PROFESSOR_REPORT.md)** — detailed report (phases, data sources, AI + LLM integration, limitations)
+- **[docs/MBA982_Project_Module_Report.md](docs/MBA982_Project_Module_Report.md)** / **[PDF](docs/MBA982_Project_Module_Report.pdf)** — MBA982 project module report (phases, data, AI + LLM)
 - **[docs/SUMMARY.md](docs/SUMMARY.md)** — concise results and scope-down table
 - **[docs/labeling_methodology.md](docs/labeling_methodology.md)** — how 4-class labels are derived
 
@@ -76,6 +76,6 @@ src/
   interpret/   SHAP + attention heatmaps
   assistant/   counterfactual re-scoring + grounded LLM narrative
 app/         Streamlit demo
-docs/        methodology, professor report, stats, summary
+docs/        MBA982 module report (md+pdf), methodology, stats, summary
 stubs/       no-op numba shim (Smart App Control workaround)
 ```
