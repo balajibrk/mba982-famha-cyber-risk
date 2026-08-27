@@ -20,8 +20,9 @@ Thumbs.db
 .cache/
 *.ckpt
 
-# Publisher PDF (copyrighted; cite the DSS article instead of redistributing)
+# Publisher PDF (copyrighted paper); allow project-generated report PDF
 *.pdf
+!docs/PROFESSOR_REPORT.pdf
 
 # Local logs
 *.log

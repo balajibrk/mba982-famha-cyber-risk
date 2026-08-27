@@ -3,7 +3,33 @@
 **Project type:** Scoped academic reproduction + novel AI/LLM extension  
 **Source paper:** Bag, S., Sarkar, S., & Bose, I. (2025). *Enhancing cybersecurity risk assessment using temporal knowledge graph-based explainable decision support system.* *Decision Support Systems*, 198, 114526.  
 **Hardware:** NVIDIA RTX 2000 Ada Generation Laptop GPU (8 GB VRAM)  
+**GitHub repository (code + docs):** https://github.com/balajibrk/mba982-famha-cyber-risk  
 **Purpose of this document:** Provide a professor-reviewable account of (1) reproduction phases, (2) data sources and labeling, (3) AI model fidelity, and (4) LLM integration design—with emphasis on what is *claimed*, what is *proven*, and what is *scoped down*.
+
+---
+
+## Resources (quick links)
+
+| Resource | Location |
+|----------|----------|
+| **GitHub repository** | https://github.com/balajibrk/mba982-famha-cyber-risk |
+| Professor report (this document, Markdown) | `docs/PROFESSOR_REPORT.md` |
+| Concise project summary | `docs/SUMMARY.md` |
+| Labeling methodology | `docs/labeling_methodology.md` |
+| Results table | `docs/results.csv` |
+| Data manifest | `docs/data_manifest.csv` |
+| KG statistics | `docs/kg_stats.csv` |
+| Source paper (DOI) | https://doi.org/10.1016/j.dss.2025.114526 |
+| Streamlit demo entrypoint | `app/demo_app.py` |
+| FAMHA implementation | `src/model/famha.py` |
+| Counterfactual re-scoring | `src/assistant/counterfactual.py` |
+| Grounded LLM narrative | `src/assistant/narrative.py` |
+
+Clone and browse:
+
+```text
+git clone https://github.com/balajibrk/mba982-famha-cyber-risk.git
+```
 
 ---
 
@@ -412,4 +438,36 @@ The contribution to “AI + LLM” discourse is methodological: **language is fo
 
 ---
 
-*Document version: 1.0 — prepared for professor review alongside the public GitHub repository.*
+## 12. References and resources
+
+### Primary literature
+
+1. Bag, S., Sarkar, S., & Bose, I. (2025). Enhancing cybersecurity risk assessment using temporal knowledge graph-based explainable decision support system. *Decision Support Systems*, *198*, 114526. https://doi.org/10.1016/j.dss.2025.114526
+
+### Software and model resources used in this reproduction
+
+| Component | Resource |
+|-----------|----------|
+| Graph learning | PyTorch Geometric — https://pytorch-geometric.readthedocs.io/ |
+| Deep learning | PyTorch (CUDA) — https://pytorch.org/ |
+| Sentence embeddings | `sentence-transformers` / `all-MiniLM-L6-v2` — https://www.sbert.net/ |
+| Factor analysis | scikit-learn `FactorAnalysis` — https://scikit-learn.org/ |
+| Interpretability | SHAP (KernelExplainer) — https://shap.readthedocs.io/ |
+| Local LLM runtime | Ollama — https://ollama.com/ |
+| LLM weights | Meta Llama 3.1 8B via `ollama pull llama3.1:8b` |
+| Demo UI | Streamlit — https://streamlit.io/ |
+| NLP (lemmatization) | NLTK WordNetLemmatizer — https://www.nltk.org/ |
+
+### Project deliverables
+
+| Deliverable | URL / path |
+|-------------|------------|
+| **Public GitHub repository** | **https://github.com/balajibrk/mba982-famha-cyber-risk** |
+| This report (Markdown) | https://github.com/balajibrk/mba982-famha-cyber-risk/blob/main/docs/PROFESSOR_REPORT.md |
+| Summary | https://github.com/balajibrk/mba982-famha-cyber-risk/blob/main/docs/SUMMARY.md |
+| Labeling rules | https://github.com/balajibrk/mba982-famha-cyber-risk/blob/main/docs/labeling_methodology.md |
+| README / setup | https://github.com/balajibrk/mba982-famha-cyber-risk/blob/main/README.md |
+
+---
+
+*Document version: 1.1 — prepared for professor review. Companion code: https://github.com/balajibrk/mba982-famha-cyber-risk*
